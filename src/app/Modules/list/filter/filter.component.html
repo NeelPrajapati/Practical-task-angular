@@ -34,24 +34,28 @@
     </mat-select> -->
 
     <mat-select name="" placeholder="RAM Type" [(ngModel)]="ramType" (ngModelChange)="onFilter()">
+      <mat-option>RAM Type</mat-option>
       <mat-option [value]="ramType" *ngFor="let ramType of ramTypeList">
         {{ ramType }}
       </mat-option>
     </mat-select>
 
     <mat-select name="" placeholder="Storage Size" [(ngModel)]="hddSize" (ngModelChange)="onFilter()">
+      <mat-option>Storage Size</mat-option>
       <mat-option [value]="hddSize" *ngFor="let hddSize of hddSizeList">
         {{ hddSize }}
       </mat-option>
     </mat-select>
 
     <mat-select name="" placeholder="Storage Type" [(ngModel)]="hddType" (ngModelChange)="onFilter()">
+      <mat-option>Storage Type</mat-option>
       <mat-option [value]="hddType" *ngFor="let hddType of hddTypeList">
         {{ hddType }}
       </mat-option>
     </mat-select>
 
     <mat-select name="" placeholder="Location" [(ngModel)]="location" (ngModelChange)="onFilter()">
+      <mat-option>Location</mat-option>
       <mat-option [value]="location" *ngFor="let location of locationList">
         {{ location }}
       </mat-option>
