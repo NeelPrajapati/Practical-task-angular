@@ -2,8 +2,8 @@
   <mat-card-title>Filter</mat-card-title>
   <!-- <mat-card-subtitle></mat-card-subtitle> -->
   <mat-card-content>
-    <!-- <div class="storage-filter">
-      <span>Storage Type : </span>
+    <div class="storage-filter">
+      <!-- <span>Storage Type : </span>
       <mat-radio-group aria-label="Select an option" [(ngModel)]="storageType" name="question">
         <mat-radio-button value="SATA2">SATA2</mat-radio-button>
         <mat-radio-button value="SSD">SSD</mat-radio-button>
@@ -13,14 +13,14 @@
         <span>Min. Strorage(TB): </span>
         <mat-slider #gridsize1 [(ngModel)]="storageRangeTb" step="2" min="0" max="24"></mat-slider>
         <b>{{ gridsize1.value }}</b>
-      </div>
+      </div> -->
 
-      <div *ngIf="storageType == 'SSD'">
-        <span>Min. Strorage(GB): </span>
-        <mat-slider #gridsize [(ngModel)]="storageRangeGb" step="120" min="0" max="9600"></mat-slider>
+      <div>
+        <span>Min. RAM Size(in GB): </span>
+        <mat-slider #gridsize [value]="ramSize" [(ngModel)]="ramSize" step="2" min="0" max="128" (change)="onFilter()"></mat-slider>
         <b>{{ gridsize.value }}</b>
       </div>
-    </div> -->
+    </div>
 
     <!-- <span>RAM : </span>
     <div *ngFor="let item of ramType" [(ngModel)]="RAMType" >
@@ -28,42 +28,46 @@
     </div>
     {{RAMType}} -->
 
-    <mat-select name="" placeholder="RAM Size" [(ngModel)]="ramSize" (selectionChange)="updateHdd()">
+    <!-- <mat-select name="" placeholder="RAM Size" [(ngModel)]="ramSize" >
       <mat-option [value]="ramSize" *ngFor="let ramSize of ramSizeList">
         {{ ramSize }}
       </mat-option>
-    </mat-select>
+    </mat-select> -->
 
-    <mat-select name="" placeholder="RAM Type" [(ngModel)]="ramType" (selectionChange)="updateLocation()">
+    <mat-select name="" placeholder="RAM Type" [(ngModel)]="ramType" (ngModelChange)="onFilter()">
       <mat-option [value]="ramType" *ngFor="let ramType of ramTypeList">
         {{ ramType }}
       </mat-option>
     </mat-select>
 
-    <mat-select name="" placeholder="Storage Size" [(ngModel)]="hddSize" (selectionChange)="updateHdd()">
+    <mat-select name="" placeholder="Storage Size" [(ngModel)]="hddSize" (ngModelChange)="onFilter()">
       <mat-option [value]="hddSize" *ngFor="let hddSize of hddSizeList">
         {{ hddSize }}
       </mat-option>
     </mat-select>
 
-    <mat-select name="" placeholder="Storage Type" [(ngModel)]="hddType" (selectionChange)="updateLocation()">
+    <mat-select name="" placeholder="Storage Type" [(ngModel)]="hddType" (ngModelChange)="onFilter()">
       <mat-option [value]="hddType" *ngFor="let hddType of hddTypeList">
         {{ hddType }}
       </mat-option>
     </mat-select>
 
-    <mat-select name="" placeholder="Location" [(ngModel)]="location" (selectionChange)="updateLocation()">
+    <mat-select name="" placeholder="Location" [(ngModel)]="location" (ngModelChange)="onFilter()">
       <mat-option [value]="location" *ngFor="let location of locationList">
         {{ location }}
       </mat-option>
     </mat-select>
 
   </mat-card-content>
-  <mat-card-actions align="end">
-    <button mat-raised-button color="primary" (click)="onFilter()">
-      Filter
-    </button>
-    <button mat-raised-button color="Basic" (click)="onCancel()">Cancel</button>
-  </mat-card-actions>
+
+  <div class="actions-btn">
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" (click)="onFilter()">
+        Filter
+      </button>
+      <button mat-raised-button color="Basic" (click)="onClear()">Clear</button>
+    </mat-card-actions>
+    
+  </div>
   <mat-card-footer></mat-card-footer>
 </mat-card>

@@ -1,51 +1,59 @@
 <div class="container">
-  <button mat-raised-button color="primary" (click)="goToDashboard()">Go to Dashboard</button>
+  <div class="btn">
+    
+    <button mat-raised-button color="primary" (click)="goToDashboard()">Go to Dashboard</button>
+  </div>
 
   <app-filter [newTableData]="newTableData"  (isclick)="getData($event)"></app-filter>
-
-  <table mat-table [dataSource]="dataSource">
-    <ng-container matColumnDef="Model">
-      <th mat-header-cell *matHeaderCellDef>Model</th>
-      <td mat-cell *matCellDef="let element">{{ element.model }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="RAM">
-      <th mat-header-cell *matHeaderCellDef>RAM</th>
-      <td mat-cell *matCellDef="let element">{{ element.ramSize }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="RAM Type">
-      <th mat-header-cell *matHeaderCellDef>RAM Type</th>
-      <td mat-cell *matCellDef="let element">{{ element.ramType }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="HDD">
-      <th mat-header-cell *matHeaderCellDef>Storage</th>
-      <td mat-cell *matCellDef="let element">{{ element.hddSize }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="HDD Type">
-      <th mat-header-cell *matHeaderCellDef>Storage Type</th>
-      <td mat-cell *matCellDef="let element">{{ element.hddType }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="Location">
-      <th mat-header-cell *matHeaderCellDef>Location</th>
-      <td mat-cell *matCellDef="let element">{{ element.location }}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="Price">
-      <th mat-header-cell *matHeaderCellDef>Price</th>
-      <td mat-cell *matCellDef="let element">{{ element.price }}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  </table>
-  <mat-paginator #paginator
-  [length]="tableData.length"
-  [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 20]">
-  </mat-paginator>
+<div class="tabledata">
+  
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="Model">
+        <th mat-header-cell *matHeaderCellDef>Model</th>
+        <td mat-cell *matCellDef="let element">{{ element.model }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="RAM">
+        <th mat-header-cell *matHeaderCellDef>RAM</th>
+        <td mat-cell *matCellDef="let element">{{ element.ramSize }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="RAM Type">
+        <th mat-header-cell *matHeaderCellDef>RAM Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.ramType }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="HDD">
+        <th mat-header-cell *matHeaderCellDef>Storage</th>
+        <td mat-cell *matCellDef="let element">{{ element.hddSize }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="HDD Type">
+        <th mat-header-cell *matHeaderCellDef>Storage Type</th>
+        <td mat-cell *matCellDef="let element">{{ element.hddType }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Location">
+        <th mat-header-cell *matHeaderCellDef>Location</th>
+        <td mat-cell *matCellDef="let element">{{ element.location }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">{{ element.price }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>
+<div class="pagination">
+  
+    <mat-paginator #paginator
+    [length]="tableData.length"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>
 
 </div>

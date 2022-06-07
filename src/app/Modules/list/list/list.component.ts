@@ -15,6 +15,7 @@ export class ListComponent implements OnInit {
   copyTableData: any;
   dataSource: any;
   newTableData: any = [];
+  newTableDataCopy: any = [];
   model: any = [];
   ramSize: any = [];
   ramType: any = [];
@@ -29,18 +30,14 @@ export class ListComponent implements OnInit {
   locationList: any = [];
   filterValues: any = [];
 
-
-
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.tableData = data;
     this.newData();
     this.dataSource = new MatTableDataSource<Element>(this.newTableData);
-    // this.filterLocation();
-    // this.filterRamType();
-  }
 
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -87,28 +84,44 @@ export class ListComponent implements OnInit {
       });
     });
     console.log(this.newTableData)
+    this.newTableDataCopy = this.newTableData;
   }
 
   goToDashboard() {
     this.router.navigate(['./dashboard']);
   }
 
-  filterLocation() {
-    this.locationList = [...new Set(this.tableData.map((item: any) => item.Location))]
-    console.log(this.locationList);
-  }
+  // filterLocation() {
+  //   this.locationList = [...new Set(this.tableData.map((item: any) => item.Location))]
+  //   console.log(this.locationList);
+  // }
 
-  filterRamType() {
-    this.ramType = [...new Set(this.tableData.map((item: any) => item.RAM.slice(-4, item.RAM.length)))]
-    console.log(this.ramType);
-  }
+
+  // .filter((s: any) => (Number(s.ramSize.slice(0,-2)) >= Number(this.filterValues.ramSize.slice(0,-2))) 
+
+  // filterRamSize() {
+  //     this.newTableData = this.newTableDataCopy.filter((s: any) => (s.ramSize == this.filterValues.ramSize) && (this.filterValues.ramType ? s.ramType == this.filterValues.ramType : true) && (this.filterValues.hddSize ? s.hddSize == this.filterValues.hddSize : true) && (this.filterValues.hddType ? s.hddType == this.filterValues.hddType : true) && (this.filterValues.location ? s.location == this.filterValues.location : true));
+  //     return this.newTableData;
+  // }
+
+  // filterRamType() {
+  //     this.newTableData = this.newTableDataCopy.filter((s: any) => s.ramType == this.filterValues.ramType);
+  //     return this.newTableData;
+  // }
 
   getData(data: any) {
     this.filterValues = data;
-
-    if (this.filterValues.storageRangeGb) {
-      this.tableData.filter((s: any) => s.HDD >= this.filterValues.storageRangeGb);
-      console.log(this.tableData);
-    }
+    this.displayData();
   }
+
+  displayData(){
+
+    this.newTableData = this.newTableDataCopy.filter((s: any) => (this.filterValues.ramSize ? s.ramSize.slice(0,-2) >= this.filterValues.ramSize : true) && (this.filterValues.ramType ? s.ramType == this.filterValues.ramType : true) && (this.filterValues.hddSize ? s.hddSize == this.filterValues.hddSize : true) && (this.filterValues.hddType ? s.hddType == this.filterValues.hddType : true) && (this.filterValues.location ? s.location == this.filterValues.location : true));
+
+    this.dataSource = new MatTableDataSource<Element>(this.newTableData);
+    this.dataSource.paginator = this.paginator;
+
+  }
+
+
 }

@@ -32,26 +32,33 @@ export class FilterComponent implements OnInit {
 
   ngOnInit(): void {
     // this.newTableData = JSON.parse(this.newTableData);
-    this.ramSizeList = [ ... new Set(this.newTableData.map((s:any)=>s.ramSize))];
-    this.ramTypeList = [ ... new Set(this.newTableData.map((s:any)=>s.ramType))];
-    this.hddSizeList = [ ... new Set(this.newTableData.map((s:any)=>s.hddSize))];
-    this.hddTypeList = [ ... new Set(this.newTableData.map((s:any)=>s.hddType))];
-    this.locationList = [ ... new Set(this.newTableData.map((s:any)=>s.location))];
+    this.ramSizeList = [ ... new Set(this.newTableData.map((s:any)=>s.ramSize))];   
+    this.ramTypeList = [ ... new Set(this.newTableData.map((s:any)=>s.ramType))];   
+    this.hddSizeList = [ ... new Set(this.newTableData.map((s:any)=>s.hddSize))];   
+    this.hddTypeList = [ ... new Set(this.newTableData.map((s:any)=>s.hddType))];   
+    this.locationList = [ ... new Set(this.newTableData.map((s:any)=>s.location))]; 
     console.log(this.newTableData);
   }
 
   onFilter(){
-    // this.filterObj = {
-    //   storageRangeTb:this.storageRangeTb ,
-    //   storageRangeGb:this.storageRangeGb ,
-    //   storageSize:this.storageSize ,
-    //   location:this.location 
-    // }
+    this.filterObj = {
+      ramSize:this.ramSize ,
+      ramType:this.ramType ,
+      hddSize:this.hddSize ,
+      hddType:this.hddType,
+      location:this.location
+    }
     this.isclick.emit(this.filterObj);
   }
 
-  onCancel(){
-    
+  onClear(){
+    this.ramSize = '' 
+    this.ramType = ''
+    this.hddSize = ''
+    this.hddType = ''
+    this.location = ''
+    this.isclick.emit(this.filterObj);
+    this.onFilter()
   }
 
   updateSetting(){
