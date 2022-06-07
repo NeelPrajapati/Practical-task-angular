@@ -19,6 +19,7 @@ export class FilterComponent implements OnInit {
 
   location : any;
   ramSize : any;
+  ramSizeRange : any;
   ramType : any;
   hddSize : any;
   hddType : any;
@@ -43,6 +44,7 @@ export class FilterComponent implements OnInit {
   onFilter(){
     this.filterObj = {
       ramSize:this.ramSize ,
+      ramSizeRange:this.ramSizeRange,
       ramType:this.ramType ,
       hddSize:this.hddSize ,
       hddType:this.hddType,
@@ -53,6 +55,7 @@ export class FilterComponent implements OnInit {
 
   onClear(){
     this.ramSize = '' 
+    this.ramSizeRange = ''
     this.ramType = ''
     this.hddSize = ''
     this.hddType = ''

@@ -15,9 +15,8 @@
       </div> -->
 
       <div class="slider">
-        <span>Min. RAM Size(in GB): </span>
-        <mat-slider #gridsize [value]="ramSize" [(ngModel)]="ramSize" step="2" min="0" max="128" (change)="onFilter()"></mat-slider>
-        <b>{{ gridsize.value }}</b>
+        <span>Min. RAM Size(in GB): </span><b>{{ gridsize.value }}</b>
+        <mat-slider #gridsize [value]="ramSizeRange" [(ngModel)]="ramSizeRange" step="2" min="0" max="128" (change)="onFilter()"></mat-slider>
       </div>
     
 
@@ -27,11 +26,11 @@
     </div>
     {{RAMType}} -->
 
-    <!-- <mat-select name="" placeholder="RAM Size" [(ngModel)]="ramSize" >
+    <mat-select name="" placeholder="RAM Size" [(ngModel)]="ramSize" (ngModelChange)="onFilter()">
       <mat-option [value]="ramSize" *ngFor="let ramSize of ramSizeList">
         {{ ramSize }}
       </mat-option>
-    </mat-select> -->
+    </mat-select>
 
     <mat-select name="" placeholder="RAM Type" [(ngModel)]="ramType" (ngModelChange)="onFilter()">
       <mat-option>RAM Type</mat-option>
