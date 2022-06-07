@@ -2,9 +2,12 @@
   margin-left: 16px;
 }
 
-.storage-filter {
-  display: flex;
-  flex-direction: row;
+.slider{
+  width: 18%;
+  display: inline-block;
+  // outline: groove 0.5px;
+  padding: 7px 10px;
+  margin: 0px 11px;
 }
 
 .mat-card-content {

@@ -116,7 +116,12 @@ export class ListComponent implements OnInit {
 
   displayData(){
 
-    this.newTableData = this.newTableDataCopy.filter((s: any) => (this.filterValues.ramSize ? s.ramSize.slice(0,-2) >= this.filterValues.ramSize : true) && (this.filterValues.ramType ? s.ramType == this.filterValues.ramType : true) && (this.filterValues.hddSize ? s.hddSize == this.filterValues.hddSize : true) && (this.filterValues.hddType ? s.hddType == this.filterValues.hddType : true) && (this.filterValues.location ? s.location == this.filterValues.location : true));
+    this.newTableData = this.newTableDataCopy.filter((s: any) => 
+    (this.filterValues.ramSize ? s.ramSize.slice(0,-2) >= this.filterValues.ramSize : true) && 
+    (this.filterValues.ramType ? s.ramType == this.filterValues.ramType : true) &&
+    (this.filterValues.hddSize ? s.hddSize == this.filterValues.hddSize : true) &&
+    (this.filterValues.hddType ? s.hddType == this.filterValues.hddType : true) &&
+    (this.filterValues.location ? s.location == this.filterValues.location : true));
 
     this.dataSource = new MatTableDataSource<Element>(this.newTableData);
     this.dataSource.paginator = this.paginator;
