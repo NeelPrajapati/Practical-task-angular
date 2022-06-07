@@ -27,6 +27,7 @@
     {{RAMType}} -->
 
     <mat-select name="" placeholder="RAM Size" [(ngModel)]="ramSize" (ngModelChange)="onFilter()">
+      <mat-option>RAM Size</mat-option>
       <mat-option [value]="ramSize" *ngFor="let ramSize of ramSizeList">
         {{ ramSize }}
       </mat-option>
